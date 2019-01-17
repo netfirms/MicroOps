@@ -1,0 +1,23 @@
+version: '3'
+services:
+  nexus3:
+    image: sonatype/nexus3
+    ports:
+      - "8081:8081"
+    environment:
+      NEXUS_CONTEXT : nexus
+  sonarqube:
+    image: sonarqube:7.5-community
+    ports:
+      - "9000:9000"
+  jenkins:
+    image: jenkins:2.60.3-alpine
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    ports:
+      - "443:443"
+      - "80:80"
+      - "22:22"
