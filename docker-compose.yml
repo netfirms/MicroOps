@@ -9,12 +9,21 @@ services:
       LDAP_DOMAIN : "my-company.com"
       LDAP_ORGANISATION : "My Company"
       LDAP_ADMIN_PASSWORD : "P@ssw0rd@1"
+      
+  ldap-admin:
+    image: osixia/phpldapadmin:0.7.2
+    ports:
+      - "6443:443"
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS=localhost
+
   nexus3:
     image: sonatype/nexus3
     ports:
       - "8081:8081"
     environment:
       NEXUS_CONTEXT : nexus
+      
   sonarqube:
     image: sonarqube:7.5-community
     ports:
@@ -24,6 +33,7 @@ services:
     ports:
       - "8080:8080"
       - "50000:50000"
+      
   gitlab:
     image: gitlab/gitlab-ce:latest
     ports:
