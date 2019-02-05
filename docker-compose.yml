@@ -1,5 +1,14 @@
 version: '3'
 services:
+  ldap-server:
+    image: osixia/openldap:1.2.3
+    ports:
+      - "389:389"
+      - "636:636"
+    environment:
+      LDAP_DOMAIN : "my-company.com"
+      LDAP_ORGANISATION : "My Company"
+      LDAP_ADMIN_PASSWORD : "P@ssw0rd@1"
   nexus3:
     image: sonatype/nexus3
     ports:
